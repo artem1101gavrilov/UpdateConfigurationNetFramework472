@@ -5,18 +5,14 @@ namespace UpdateConfiguration
 {
     public class TestConfiguration : ConfigurationSection
     {
-        public static TestConfiguration Instance { get; private set; }
-
-        static TestConfiguration()
-        {
-            try
+        public static TestConfiguration Instance
+        { 
+            get 
             {
-                Instance = (TestConfiguration)ConfigurationManager.GetSection(nameof(TestConfiguration));
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
+                // Первое решение
+                // ConfigurationManager.RefreshSection(nameof(TestConfiguration));
+                return (TestConfiguration)ConfigurationManager.GetSection(nameof(TestConfiguration));
+            }  
         }
 
         private TestConfiguration() { }
